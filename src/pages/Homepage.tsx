@@ -36,10 +36,9 @@ const Homepage = () => {
 
       <main className='container mt-5'>
         <div className='row gap-4 align-items-center justify-content-center'>
-          {pokemones.map((pokemon) => (
-            <CardPokemon pokemon={pokemon} key={pokemon.id} />
-          ))
-          }
+          {pokemones.map((pokemon, index) => (
+            <CardPokemon pokemon={pokemon} key={index} />
+          ))}
         </div>
       </main>
     </>
