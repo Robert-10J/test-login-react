@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { VALIDATION } from '../validations';
 import Alert from '../components/Alert';
+import axiosClient from '../config/axiosClient';
+import { AxiosError } from 'axios';
 
 type DataForm = {
   email: string
@@ -9,11 +11,28 @@ type DataForm = {
 }
 
 const Login = () => {
-  const { handleSubmit, register, formState: { errors } } = useForm<DataForm>();
+  const navigate = useNavigate();
+  const { handleSubmit, register, setError, formState: { errors } } = useForm<DataForm>();
 
-  const handleSubmitLogin = async(data: DataForm) => {
-    // Handle form submission
-    console.log(data);
+  const handleSubmitLogin = async (data: DataForm) => {
+    try {
+      console.log(data);
+      const response = await axiosClient.post('/login', data);
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      navigate('/homepage')
+    } catch (error) {
+      const err = error as AxiosError;
+      const errors = Object.entries(err.response?.data);
+      errors.forEach(([field, messages]) => {
+        (messages as string[]).forEach((message) => {
+          setError(field as keyof DataForm, {
+            type: 'server',
+            message: message
+          });
+        });
+      });
+    }
   };
 
   return (
