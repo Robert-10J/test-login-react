@@ -14,7 +14,7 @@ const Logout = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      localStorage.removeItem('token');
+      localStorage.clear();
       navigate('/login');
     } catch (error) {
       console.error(error);
