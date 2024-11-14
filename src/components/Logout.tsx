@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 import axiosClient from '../config/axiosClient';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const Logout = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      })
+      });
       localStorage.removeItem('token');
       navigate('/login');
     } catch (error) {

@@ -20,18 +20,17 @@ const Login = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      navigate('/homepage')
+      navigate('/homepage');
       return;
     }
   }, [])
 
   const handleSubmitLogin = async (data: DataForm) => {
     try {
-      console.log(data);
       const response = await axiosClient.post('/login', data);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      navigate('/homepage')
+      navigate('/homepage');
     } catch (error) {
       const err = error as AxiosError;
       const errors = Object.entries(err.response?.data);
@@ -52,32 +51,32 @@ const Login = () => {
 
       <form onSubmit={handleSubmit(handleSubmitLogin)}>
         <div className='mb-3'>
-          <label 
-            htmlFor='exampleInputEmail1' 
+          <label
+            htmlFor='exampleInputEmail1'
             className='form-label'
-            >Email</label>
-          <input 
-            type='email' 
-            className='form-control' 
-            id='exampleInputEmail1' 
+          >Email</label>
+          <input
+            type='email'
+            className='form-control'
+            id='exampleInputEmail1'
             aria-describedby='emailHelp'
-            { ...register('email', VALIDATION.email) }
+            {...register('email', VALIDATION.email)}
           />
-          { errors?.email && (<Alert typeAlert={'alert-danger'}>{errors?.email?.message}</Alert>) }
+          {errors?.email && (<Alert typeAlert={'alert-danger'}>{errors?.email?.message}</Alert>)}
         </div>
 
         <div className='mb-3'>
-          <label 
-            htmlFor='exampleInputPassword1' 
+          <label
+            htmlFor='exampleInputPassword1'
             className='form-label'
           >Password</label>
-          <input 
+          <input
             type='password'
             className='form-control'
             id='exampleInputPassword1'
-            { ...register('password', VALIDATION.password) }
+            {...register('password', VALIDATION.password)}
           />
-          { errors?.password && (<Alert typeAlert={'alert-danger'}>{errors?.password?.message}</Alert>) }
+          {errors?.password && (<Alert typeAlert={'alert-danger'}>{errors?.password?.message}</Alert>)}
         </div>
 
         <div className='d-flex justify-content-between'>
@@ -89,4 +88,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
