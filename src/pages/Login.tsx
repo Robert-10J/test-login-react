@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { VALIDATION } from '../validations';
 import Alert from '../components/Alert';
 import axiosClient from '../config/axiosClient';
-import { AxiosError } from 'axios';
 
 type DataForm = {
   email: string
@@ -13,6 +14,14 @@ type DataForm = {
 const Login = () => {
   const navigate = useNavigate();
   const { handleSubmit, register, setError, formState: { errors } } = useForm<DataForm>();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/homepage')
+      return;
+    }
+  }, [])
 
   const handleSubmitLogin = async (data: DataForm) => {
     try {
