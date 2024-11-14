@@ -1,3 +1,14 @@
+## Instrucciones para levantar el proyecto
+
+1. Tener instalada una versión de node > 18
+2. Abrir la ruta donde se encuentre el proyecto desde cmd/consola
+3. Ejecutar el comando `npm install`
+4. Abrir la url que arrojara en la terminal
+
+## NOTA:
+Por cuestiones de practicidad no se ignoro el archivo .env que contiene la url a la api de laravel.
+Si llegase a ver problemas de conexión con la api, revisar el puerto en este archivo .env
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
