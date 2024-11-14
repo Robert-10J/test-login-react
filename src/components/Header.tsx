@@ -15,13 +15,13 @@ const Header = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User>();
 
-  useEffect(() => {
+/*   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
       return;
     }
-  }, [])
+  }, []) */
 
   useEffect(() => {
     const dataUser = localStorage.getItem('user');

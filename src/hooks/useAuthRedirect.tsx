@@ -1,19 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-type AuthenticatedUrl = '/homepage';
-type UnauthenticatedUrl = '/iniciar-sesion' | '/crear-cuenta';
-
-const UseAuthRedirect = (
-  { 
-    authenticatedUrl, 
-    unauthenticatedUrl 
-  }: { 
-    authenticatedUrl: AuthenticatedUrl, 
-    unauthenticatedUrl: UnauthenticatedUrl 
-  }
-) => {
+type Routes = '/iniciar-sesion' | '/crear-cuenta' | '/homepage'
+const useAuthRedirect = (authenticatedUrl: Routes ) => {
   const navigate = useNavigate();
+  const unauthenticatedUrl: Routes = '/iniciar-sesion';
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -25,4 +16,4 @@ const UseAuthRedirect = (
   }, [navigate, authenticatedUrl, unauthenticatedUrl]);
 }
 
-export default UseAuthRedirect;
+export default useAuthRedirect;

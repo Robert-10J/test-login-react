@@ -5,6 +5,7 @@ import { AxiosError } from 'axios';
 import { VALIDATION } from '../validations';
 import Alert from '../components/Alert';
 import axiosClient from '../config/axiosClient';
+import useAuthRedirect from '../hooks/useAuthRedirect';
 
 type DataForm = {
   email: string
@@ -12,6 +13,7 @@ type DataForm = {
 }
 
 const Login = () => {
+  useAuthRedirect('/homepage');
   const navigate = useNavigate();
   const { handleSubmit, register, setError, formState: { errors } } = useForm<DataForm>();
 
